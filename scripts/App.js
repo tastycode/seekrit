@@ -10,6 +10,10 @@ export default class App extends Component {
     decryptPassword: ''
   }
 
+  _handleCodeFocus(evt) {
+    evt.target.select();
+  }
+
   _handleEncryptMessageChange(evt) {
     this.setState({
       encryptMessage: evt.target.value
@@ -76,7 +80,9 @@ export default class App extends Component {
        <nav className="nav-extended">
           <div className="nav-wrapper">
             <a href="#" className="brand-logo">🔎 seekrit</a>
-            <a href="#" data-activates="mobile-demo" className="button-collapse"><i className="material-icons"></i></a>
+
+
+            <a href="#" data-activates="mobile-demo" class="hide-on-med-and-down button-collapse"><i class="material-icons"></i></a>
             <ul className="tabs tabs-transparent">
               <li className="tab"><a href="#encrypt">Encrypt</a></li>
               <li className="tab"><a href="#decrypt">Decrypt</a></li>
@@ -112,9 +118,7 @@ export default class App extends Component {
                 <div className="card">
                   <div className="card-content">
                     <span className="card-title">Encrypted Message</span>
-                    <pre>
-        {this.state.encryptedMessage}
-        </pre>
+                    <textarea className="like-code" onFocus={this._handleCodeFocus.bind(this)} value={this.state.encryptedMessage}></textarea>
                   </div>
                 </div>
               </div>
@@ -145,20 +149,14 @@ export default class App extends Component {
             </form>
 
             <div className="row">
-              <div className="col s12 m6">
+              <div className="col s12">
                 <div className="card">
                   <div className="card-content">
                     <span className="card-title">Decrypted Message</span>
                     <p className="pink-text">
                       {this.state.decryptError}
                     </p>
-                    <pre>
-        {this.state.decryptedMessage}
-        </pre>
-                  </div>
-
-                  <div className="card-action">
-                    <a href="#">Share</a>
+                    <p className="flowText">{this.state.decryptedMessage}</p>
                   </div>
                 </div>
               </div>
