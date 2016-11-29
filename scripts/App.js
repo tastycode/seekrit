@@ -10,6 +10,11 @@ export default class App extends Component {
     decryptPassword: ''
   }
 
+  _handleSubmit(e) {
+    e.preventDefault();
+    return false;
+  }
+
   _handleCodeFocus(evt) {
     evt.target.select();
   }
@@ -93,7 +98,7 @@ export default class App extends Component {
           <br/>
 
           <div className="row">
-            <form className="col s12">
+            <form className="col s12" onSubmit={this._handleSubmit.bind(this)}>
               <div className="row">
                 <div className="input-field col s12">
                   <input placeholder="" id="encryptpassword" type="password"
@@ -129,7 +134,7 @@ export default class App extends Component {
           <br/>
 
           <div className="row">
-            <form className="col s12">
+            <form className="col s12" onSubmit={this._handleSubmit.bind(this)}>
               <div className="row">
                 <div className="input-field col s12">
                   <input placeholder="" id="decryptpassword" type="password"
